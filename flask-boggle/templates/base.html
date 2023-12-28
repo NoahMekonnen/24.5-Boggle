@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <!-- <link rel="stylesheet" href="stuff.css"> -->
+    <script src="https://unpkg.com/jquery"></script> 
+    <script src="https://unpkg.com/axios/dist/axios.js"></script>
+    <script src = "static/stuff.js"></script>
+</head>
+<body>
+
+    <!-- {% block content %}
+    {{new_board}}
+    {% endblock %} -->
+    <h1>Boggle board</h1>
+    <table>
+        {% for row in new_board %}
+        <tr>
+           {%for char in row %}
+           <td>{{char}}</td>
+           {% endfor %}
+        </tr>
+        {% endfor %}
+    <form action="/" id = 'form'>
+        <label for='guess'> Guess: </label>
+        <input type="text" id = 'guess' name = guess>
+        <button id = 'button'>Submit</button>
+    </form>
+    </table>
+    
+</body>
+</html>
