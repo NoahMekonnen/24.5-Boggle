@@ -22,7 +22,7 @@ def welcome():
 
 @app.route('/guesses', methods = ['POST'])
 def check_guess():
-    guess = request.args.get("guess")
+    guess = request.args["guess"]
     guess_in_words = guess in boggle_game.words
     valid_word = boggle_game.check_valid_word(session['new_board'], guess)
     return redirect('/')
