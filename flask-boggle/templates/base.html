@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
     <!-- <link rel="stylesheet" href="stuff.css"> -->
-    <script src="https://unpkg.com/jquery"></script> 
-    <script src="https://unpkg.com/axios/dist/axios.js"></script>
-    <script src = "static/stuff.js"></script>
+
 </head>
 <body>
 
@@ -23,12 +21,14 @@
            {% endfor %}
         </tr>
         {% endfor %}
-    <form action="/" id = 'form'>
+    <form id = 'form'>
         <label for='guess'> Guess: </label>
         <input type="text" id = 'guess' name = guess>
         <button id = 'button'>Submit</button>
     </form>
     </table>
-    
+    <script src="https://unpkg.com/jquery"></script> 
+    <script src="https://unpkg.com/axios/dist/axios.js"></script>
+    <script src = "static/stuff.js"></script>
 </body>
 </html>
