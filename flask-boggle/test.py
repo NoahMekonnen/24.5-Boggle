@@ -7,10 +7,11 @@ from boggle import Boggle
 class FlaskTests(TestCase):
 
     # TODO -- write tests for every view function / feature!
-    # def setUp(self):
-    #   """Stuff to do before every test."""
-    #   with app.test_client() as client:
-    #      session["num_of_plays"] = 0
+    def setUp(self):
+      """Stuff to do before every test."""
+      with app.test_client() as client:
+        with client.session_transaction() as change_session:
+            change_session["num_of_plays"] = 0
     
 
     # def tearDown(self):
@@ -23,9 +24,13 @@ class FlaskTests(TestCase):
             self.assertIn("Score :", html)
     def test_check_guess(self):
         with app.test_client() as client:
-            resp = client.post('/check-word',data={'guess': 'SAINTS'})
-            html = resp.get_data(as_text=True)
-            self.assertEqual(html, jsonify({'result': 'not-a-word'}))
+            with client.session_transaction() as change_session:
+                boggle_game = Boggle()
+                new_board = boggle_game.make_board()
+                session['new_board'] = new_board
+                resp = client.post('/check-word',data={'guess': 'SAINTS'})
+                html = resp.get_data(as_text=True)
+                self.assertIn('not-a-word', html)
     def test_update_score(self):
         with app.test_client() as client:
             with client.session_transaction() as change_session:
