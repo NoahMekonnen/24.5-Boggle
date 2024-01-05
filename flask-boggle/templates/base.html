@@ -14,6 +14,7 @@
     {% endblock %} -->
     <h1>Boggle board</h1>
     <table>
+        Score : <h3 id="score"></h3>
         {% for row in new_board %}
         <tr>
            {%for char in row %}
@@ -21,9 +22,9 @@
            {% endfor %}
         </tr>
         {% endfor %}
-    <form action="/guesses" id = 'form'>
+    <form action="/check-word" method = "POST" id = 'form'>
         <label for='guess'> Guess: </label>
-        <input type="text" id = 'guess' name = guess>
+        <input type="text"id= "guess"name = "guess">
         <button id = 'button'>Submit</button>
     </form>
     </table>
