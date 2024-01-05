@@ -7,66 +7,6 @@ const label = $("label")
 const body = $("body")
 const result = $("<h3></h3>")
 
-
-
-// // post request for button
-// async function postRequest(){
-//     const guess = $('#guess')[0].value
-//     // handles duplicate words
-//     if (!(listOfWords.includes(guess))){
-//         const response = await axios.get("/check-word",{params:{guess: guess}},);
-//         // making response based on validity of word
-//         if (response.data.result == "ok"){
-//             result.text("This is a valid word")
-//             score += guess.length
-//             $("#score").text(score)
-//         }
-//         else if (response.data.result == "not-a-word"){
-//             result.text("This is not a word")
-//         }
-//         else{
-//             result.text("This is not on the board")
-//         }
-//         body.append(result)
-//         listOfWords.push(guess)
-//     }
-//     else{
-//         alert("Type in a distinct word")
-//     }
-// }
-
-// // form functionality
-// form.on('submit', function buttonRequest(e){
-//     e.preventDefault();
-//     console.log("online!")
-//     postRequest();
-//     form[0].reset()
-// })
-
-
-// // ending the game
-// async function gameOver(){
-//     form.hide()
-//     button.hide()
-//     label.hide()
-//     input.hide()
-//     await axios.post("/update-num-of-games",{params:{score: score}})
-// }
-
-// // stop guessing after 60 seconds
-// setTimeout(gameOver, 5000)
-
-
-
-"use strict";
-
-const form = $("form")
-const button = $("button")
-const input = $("input")
-const label = $("label")
-const body = $("body")
-const result = $("<h3></h3>")
-
 class Boggle_stuff{
     constructor(listOfWords,score){
         this.listOfWords = listOfWords
