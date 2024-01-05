@@ -14,14 +14,13 @@ app.debug = True
 
 boggle_game = Boggle()
 
-session['num_of_games'] = 0
 
 """Starts a Boggle Game"""
 @app.route('/')
 def welcome():
     new_board = boggle_game.make_board()
     session['new_board'] = new_board
-    session['num_of_games'] +=1
+    session['num_of_games'] = 1
     return render_template('base.html', new_board = new_board)
 
 """Starts Game and accepts post request of score"""
