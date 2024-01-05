@@ -21,14 +21,15 @@ class FlaskTests(TestCase):
             html = resp.get_data(as_text=True)
             self.assertEqual(resp.status_code, 200)
             self.assertIn("Score :", html)
-    # def test_check_guess(self):
-    #     with app.test_client() as client:
-    #         resp = client.post('/',{'params':{'guess': 'SAINTS'}})
-    #         html = resp.get_data(as_text=True)
-    #         self.assertEqual(resp, jsonify({'result': 'not-a-word'}))
-    # def test_update_score(self):
-    #     with app.text_client() as client:
-    #         session["num_of_plays"] = 0
-    #         resp = client.post('/',{'params':{'score': 3}})
-    #         html = resp.get_data(as_text=True)
-    #         self.assertEqual(session["num_of_plays"], 1)
+    def test_check_guess(self):
+        with app.test_client() as client:
+            resp = client.post('/check-word',data={'guess': 'SAINTS'})
+            html = resp.get_data(as_text=True)
+            # self.assertEqual(resp, jsonify({'result': 'not-a-word'}))
+    def test_update_score(self):
+        with app.test_client() as client:
+            with client.session_transaction() as change_session:
+                change_session["num_of_plays"] = 0
+                resp = client.post('/update-num-of-games',data ={'score': 3})
+                html = resp.get_data(as_text=True)
+                self.assertEqual(change_session["num_of_plays"], 1)

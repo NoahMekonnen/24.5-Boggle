@@ -18,10 +18,10 @@ boggle_game = Boggle()
 @app.route('/')
 def welcome():
     new_board = boggle_game.make_board()
-    if not session['num_of_plays']:
-        session["num_of_plays"] = 0
+    # if not session['num_of_plays']:
+    #     session["num_of_plays"] = 0
     session['new_board'] = new_board
-    num_of_plays = session.get("num_of_plays")
+    num_of_plays = session.get("num_of_plays",0)
     return render_template('base.html', new_board = new_board, num_of_plays = num_of_plays)
 
 """Checks if word is valid"""
