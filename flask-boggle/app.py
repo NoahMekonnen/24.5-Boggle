@@ -14,26 +14,26 @@ app.debug = True
 
 boggle_game = Boggle()
 
-"""Starts a Boggle Game"""
+
 @app.route('/')
 def welcome():
+    """Starts a Boggle Game"""
     new_board = boggle_game.make_board()
-    # if not session['num_of_plays']:
-    #     session["num_of_plays"] = 0
     session['new_board'] = new_board
     num_of_plays = session.get("num_of_plays",0)
     return render_template('base.html', new_board = new_board, num_of_plays = num_of_plays)
 
-"""Checks if word is valid"""
-@app.route('/check-word', methods = ['POST'])
+
+@app.route('/check-word')
 def check_guess():
-    guess = request.json['params']['guess'] 
+    """Checks if word is valid"""
+    guess = request.args['guess']
     valid_word = boggle_game.check_valid_word(session['new_board'], guess)
     return jsonify({'result': valid_word})
 
-"""Keeps track of number of games played"""
+
 @app.route('/update-num-of-games', methods = ['POST'])
 def update_score():
+    """Keeps track of number of games played"""
     session['num_of_plays'] +=1
-    print(session['num_of_plays'])
     return redirect('/')
